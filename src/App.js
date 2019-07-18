@@ -9,41 +9,43 @@ class App extends Component {
 
     this.state = {
       number: "",
-      message: ""
+      message: [],
     }
   }
 
-  isPrime(event) {
+
+    isPrime(event) {
     let num = parseInt(event.target.value);
-    let msg;
+    let primes = [];
+    let isPrime = true;
 
-    if (num >= 2) {
-      if (num == 2) {
-        msg = "Is Prime"
-      }else{
-        let prime = true;
-        for (let i = 2; i < num; i++){
-          if (num % i == 0) {
-            prime = false;
-            break;
-          }
-        }
+    //
+    for(var i = 2; primes.length < num; i++) {
+        isPrime = true;
 
-        if (prime) {
-          msg = "Is Prime"
-        }else{
-          msg = "Not prime"
+        // Additional step to speed up the ability to determain if a number is prime
+        
+        for(let j = 2; j < i; j++) {
+            if(i % j === 0) {
+                isPrime = false;
+                break;
+            }
         }
-      }
-    }else{
-      msg = "Not prime"
+        if(isPrime === true) {
+            primes.push(i);
+        }
     }
+
+
 
     this.setState({
       number: num,
-      message: msg,
+      message: primes.map((number =>
+      <ul>{number}</ul>))
     });
   }
+
+
 
   render(){
     return (
@@ -56,8 +58,8 @@ class App extends Component {
           <h1 className="center">Prime Number Table Generator</h1>
           <div className="inputDiv">
             <h2>Enter Number</h2>
-            <input type="number" value={this.state.number} onChange={this.isPrime.bind(this)} />
-            <p>{this.state.message}</p>
+            <input type="number" value={this.state.number} onChange={(this.isPrime.bind(this))} />
+            <br/>{this.state.message}
           </div>
         </div>
 
