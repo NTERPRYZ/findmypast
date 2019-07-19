@@ -9,11 +9,11 @@ class App extends Component {
 
     this.state = {
       number: "",
-      message: [],
+      table: [],
     }
   }
 
-  isPrime(event) {
+  printTable(event) {
     let num = parseInt(event.target.value);
     let primes = [];
     let isPrime = true;
@@ -32,13 +32,20 @@ class App extends Component {
         }
     }
 
+
     console.log(primes)
 
     this.setState({
       number: num,
-      message: primes.map((number =>
-      <th>{number}</th>))
+      table: primes.map((number =>
+              <table>
+                <tr>
+                  <td>{number}</td>
+                </tr>
+              </table>))
     });
+
+    // instead of just displaying the numbers in their own cell, i need to then apply a multiplier in order to generate the multiplication table
   }
 
   render(){
@@ -52,8 +59,8 @@ class App extends Component {
           <h1 className="center">Prime Number Table Generator</h1>
           <div className="inputDiv">
             <h2>Enter Number</h2>
-            <input className="input-box" type="number" value={this.state.number} onChange={(this.isPrime.bind(this))} />
-            <br/><table>{this.state.message}</table>
+            <input className="input-box" type="number" value={this.state.number} onChange={(this.printTable.bind(this))} />
+            <br/>{this.state.table}
           </div>
         </div>
 

@@ -4,7 +4,7 @@
 }
 
 .App-header {
-  background-color: #ffffff;
+  padding-top: 30px;
   align-items: center;
   justify-content: center;
 }
@@ -30,6 +30,7 @@
   margin-right: auto;
   padding: 20px;
   display: block;
+  background-color: white;
 }
 
 .inputDiv {
