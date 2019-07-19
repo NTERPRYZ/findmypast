@@ -13,18 +13,14 @@ class App extends Component {
     }
   }
 
-
-    isPrime(event) {
+  isPrime(event) {
     let num = parseInt(event.target.value);
     let primes = [];
     let isPrime = true;
 
-    //
     for(var i = 2; primes.length < num; i++) {
         isPrime = true;
 
-        // Additional step to speed up the ability to determain if a number is prime
-        
         for(let j = 2; j < i; j++) {
             if(i % j === 0) {
                 isPrime = false;
@@ -36,16 +32,14 @@ class App extends Component {
         }
     }
 
-
+    console.log(primes)
 
     this.setState({
       number: num,
       message: primes.map((number =>
-      <ul>{number}</ul>))
+      <th>{number}</th>))
     });
   }
-
-
 
   render(){
     return (
@@ -58,8 +52,8 @@ class App extends Component {
           <h1 className="center">Prime Number Table Generator</h1>
           <div className="inputDiv">
             <h2>Enter Number</h2>
-            <input type="number" value={this.state.number} onChange={(this.isPrime.bind(this))} />
-            <br/>{this.state.message}
+            <input className="input-box" type="number" value={this.state.number} onChange={(this.isPrime.bind(this))} />
+            <br/><table>{this.state.message}</table>
           </div>
         </div>
 
